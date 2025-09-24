@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Random Colors Every Load</title>
+  <style>
+    :root{
+      --radius: 16px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px;
+      transition: background 0.6s ease;
+    }
+
+    .wrap{
+      width:min(1000px,96vw);
+      border-radius:24px;
+      padding:28px;
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+      gap:16px;
+      backdrop-filter: blur(6px);
+    }
+
+    .card{
+      height:120px;
+      border-radius:var(--radius);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+      font-weight:700;
+      text-shadow:0 2px 6px rgba(0,0,0,0.35);
+      cursor:pointer;
+      transition:transform .25s, box-shadow .25s, background .6s;
+    }
+
+    .card:hover{
+      transform:translateY(-6px) scale(1.05);
+      box-shadow:0 12px 28px rgba(0,0,0,0.25);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" id="grid"></div>
+
+  <script>
+    function randomColor(){
+      return `hsl(${Math.floor(Math.random()*360)},${60+Math.random()*30}%,${40+Math.random()*20}%)`;
+    }
+
+    // Set random background for body each time page loads
+    document.body.style.background = `linear-gradient(135deg, ${randomColor()}, ${randomColor()}, ${randomColor()})`;
+
+    // Create cards with random colors each time page loads
+    const grid = document.getElementById('grid');
+    for(let i=1;i<=12;i++){
+      const card=document.createElement('div');
+      card.className='card';
+      card.textContent='Card '+i;
+      card.style.background=randomColor();
+      card.onclick=()=>{
+        card.style.background=randomColor();
+      };
+      grid.appendChild(card);
+    }
+  </script>
+</body>
+</html>
