@@ -1,24 +1,234 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Colorful Sample — Playful UI</title>
+  <style>
+    :root{
+      --bg: linear-gradient(135deg,#f6d365 0%, #fda085 25%, #fbc2eb 50%, #a6c1ee 75%, #cfd9df 100%);
+      --card-bg: rgba(255,255,255,0.85);
+      --glass: rgba(255,255,255,0.12);
+      --accent-1: #ff6b6b;
+      --accent-2: #845ef7;
+      --accent-3: #00c2a8;
+      --text: #102027;
+      --muted: #3b3b3b;
+      --radius: 16px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      background: var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:40px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+    }
+
+    .wrap{
+      width:min(1100px,96vw);
+      backdrop-filter: blur(8px) saturate(120%);
+      background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35));
+      border-radius:24px;
+      padding:28px;
+      box-shadow: 0 8px 30px rgba(16,32,40,0.18);
+    }
+
+    header{
+      display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;
+    }
+
+    .brand{
+      display:flex;align-items:center;gap:12px;
+    }
+    .logo{
+      width:56px;height:56px;border-radius:12px;background:conic-gradient(from 90deg at 50% 50%, var(--accent-1), var(--accent-2), var(--accent-3));
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;box-shadow:0 6px 18px rgba(0,0,0,0.12);
+    }
+    h1{margin:0;font-size:20px}
+    p.lead{margin:0;color:var(--muted);font-size:13px}
+
+    .controls{display:flex;gap:10px;align-items:center}
+    .btn{padding:10px 14px;border-radius:12px;border:0;background:var(--glass);cursor:pointer;font-weight:600}
+    .btn.primary{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:white;box-shadow:0 6px 18px rgba(133,94,247,0.18)}
+
+    .grid{display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start}
+
+    /* Main card */
+    .hero{
+      background:var(--card-bg);padding:20px;border-radius:16px;overflow:hidden;position:relative
+    }
+    .hero .top{
+      display:flex;justify-content:space-between;align-items:center;margin-bottom:12px
+    }
+    .kpi{
+      display:flex;gap:12px;align-items:center
+    }
+    .kpi .dot{width:12px;height:12px;border-radius:6px}
+    .kpi .label{font-size:12px;color:var(--muted)}
+    .kpi .value{font-weight:700}
+
+    .cards{display:flex;gap:12px;margin-top:18px}
+    .mini{flex:1;padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.8));box-shadow:inset 0 1px 0 rgba(255,255,255,0.6)}
+
+    .chart{height:160px;border-radius:12px;background:linear-gradient(180deg,#fff, #f5f9ff);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700}
+
+    /* Sidebar */
+    .aside{position:sticky;top:28px}
+    .profile{display:flex;gap:12px;align-items:center;padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.9))}
+    .avatar{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#ffd86f,#ff6b6b);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+    .small{font-size:13px;color:var(--muted)}
+
+    .list{margin-top:12px;display:grid;gap:8px}
+    .item{padding:12px;border-radius:10px;background:rgba(255,255,255,0.85);display:flex;justify-content:space-between;align-items:center}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+    .photo{height:86px;border-radius:10px;background:linear-gradient(135deg,#ffecd2,#fcb69f);display:flex;align-items:center;justify-content:center;font-weight:700;color:rgba(0,0,0,0.45)}
+
+    footer{margin-top:18px;display:flex;justify-content:space-between;align-items:center}
+    .chip{padding:8px 12px;border-radius:999px;background:rgba(0,0,0,0.06);font-weight:600}
+
+    /* tiny responsive tweaks */
+    @media (max-width:900px){
+      .grid{grid-template-columns:1fr;}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+    }
+
+    /* small playful hover */
+    .btn:hover{transform:translateY(-2px);transition:transform .18s}
+    .card-hover:hover{transform:translateY(-6px);box-shadow:0 18px 38px rgba(16,32,40,0.16);transition:all .25s}
+
+  </style>
 </head>
 <body>
-    <h1>My Cloud Journey--VIJAY</h1>
-    <h1>My Cloud Journey--VIJAY</h1>
-    <h1>My Cloud Journey--VIJAY</h1>
-    <h1>My Cloud Journey--VIJAY</h1>
-    <h1>My Cloud Journey--VIJAY</h1>
-    <h1>My Cloud Journey--VIJAY</h1>
-    <h1>My Cloud Journey--VIJAY</h1>
-    <h1>My Cloud Journey--VIJAY</h1>
-    <h1>My Cloud Journey--VIJAY</h1>
-    
-    <h1>My Cloud Journey--VIJAY</h1>
-    <h1>My Cloud Journey--VIJAY</h1>
-    <h1>My Cloud Journey--VIJAY</h1>
-    <h1>My Cloud Journey--VIJAY-Babu</h1>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">CB</div>
+        <div>
+          <h1>Colorful Board</h1>
+          <p class="lead">Vibrant sample UI — playful, responsive, ready to remix.</p>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="btn" onclick="toggleTheme()">Toggle theme</button>
+        <button class="btn primary">Create</button>
+      </div>
+    </header>
+
+    <section class="grid">
+      <main>
+        <article class="hero card-hover">
+          <div class="top">
+            <div>
+              <div class="kpi">
+                <div style="display:flex;flex-direction:column">
+                  <span class="label">Monthly visitors</span>
+                  <span class="value">128,430</span>
+                </div>
+                <div style="width:18px"></div>
+                <div style="display:flex;flex-direction:column">
+                  <span class="label">Conversion</span>
+                  <span class="value">4.9%</span>
+                </div>
+              </div>
+            </div>
+            <div style="text-align:right">
+              <div class="small">All systems nominal</div>
+              <div class="small">Updated: <strong>Sep 24, 2025</strong></div>
+            </div>
+          </div>
+
+          <div class="cards">
+            <div class="mini">
+              <div style="font-size:13px;color:var(--muted)">Overview</div>
+              <div style="font-size:18px;font-weight:800;margin-top:6px">Make it colorful ✨</div>
+              <div style="margin-top:10px;color:var(--muted);font-size:13px">This is a sample card area — use gradients, rounded corners, and soft shadows to make your UI pop.</div>
+            </div>
+            <div class="mini">
+              <div style="font-size:13px;color:var(--muted)">Activity</div>
+              <div class="chart">Mini chart placeholder</div>
+            </div>
+          </div>
+
+          <div class="gallery" aria-hidden="false">
+            <div class="photo">A</div>
+            <div class="photo">B</div>
+            <div class="photo">C</div>
+            <div class="photo">D</div>
+            <div class="photo">E</div>
+            <div class="photo">F</div>
+          </div>
+
+          <footer>
+            <div class="chip">#design</div>
+            <div style="display:flex;gap:8px">
+              <button class="btn">Share</button>
+              <button class="btn primary">Export</button>
+            </div>
+          </footer>
+        </article>
+
+        <section style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap">
+          <div class="mini card-hover" style="flex:1;min-width:220px">
+            <div style="font-weight:700">Tips</div>
+            <div class="small" style="margin-top:6px">Use CSS variables for quick theme swaps. Keep components small and reusable.</div>
+          </div>
+          <div class="mini card-hover" style="flex:1;min-width:220px">
+            <div style="font-weight:700">Accessibility</div>
+            <div class="small" style="margin-top:6px">Maintain good contrast, big hit targets, and semantic markup.</div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="aside">
+        <div class="profile card-hover">
+          <div class="avatar">VB</div>
+          <div>
+            <div style="font-weight:700">Vijay B</div>
+            <div class="small">Frontend Architect • Loves colors</div>
+          </div>
+        </div>
+
+        <div class="list">
+          <div class="item">Notifications <span class="small">3</span></div>
+          <div class="item">Tasks <span class="small">6</span></div>
+          <div class="item">Messages <span class="small">12</span></div>
+        </div>
+
+        <div style="margin-top:12px;padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.85));border-radius:12px">
+          <div style="font-weight:700">Quick actions</div>
+          <div style="display:flex;gap:8px;margin-top:8px"><button class="btn">Import</button><button class="btn">Export</button></div>
+        </div>
+      </aside>
+    </section>
+  </div>
+
+  <script>
+    function toggleTheme(){
+      const root = document.documentElement;
+      if(root.style.setProperty('--bg','')){
+        // simple toggle: swap to a darker palette
+        if(root.dataset.dark === '1'){
+          root.dataset.dark = '0';
+          root.style.setProperty('--bg','linear-gradient(135deg,#f6d365 0%, #fda085 25%, #fbc2eb 50%, #a6c1ee 75%, #cfd9df 100%)');
+          root.style.setProperty('--card-bg','rgba(255,255,255,0.85)');
+          root.style.setProperty('--text','#102027');
+        } else {
+          root.dataset.dark = '1';
+          root.style.setProperty('--bg','linear-gradient(135deg,#0f172a 0%, #082032 100%)');
+          root.style.setProperty('--card-bg','rgba(10,20,30,0.7)');
+          root.style.setProperty('--text','#e6eef6');
+        }
+      }
+    }
+  </script>
 </body>
 </html>
